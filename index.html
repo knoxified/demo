@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Knoxified Roofing System</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body { background:#050505; overflow-x:hidden; }
+
+/* GLASS + DEPTH */
+.card {
+  transition: all 0.35s cubic-bezier(.22,1,.36,1);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 40px rgba(34,197,94,0.25);
+}
+
+/* GLOW HIERARCHY (FOCUS ATTENTION) */
+.glow {
+  box-shadow: 0 0 80px rgba(34,197,94,0.35);
+  border: 1px solid rgba(34,197,94,0.4);
+}
+
+/* PSYCHOLOGICAL PULSE (SUBTLE URGENCY) */
+.pulse {
+  animation: pulseGlow 2.5s infinite;
+}
+@keyframes pulseGlow {
+  0% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
+  50% { box-shadow:0 0 40px rgba(34,197,94,0.35);} 
+  100% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
+}
+
+/* LIVE DATA BLINK (FAST) */
+.live-blink {
+  animation: blinkLive 0.9s infinite;
+}
+
+@keyframes blinkLive {
+  0%,100% { opacity:1; }
+  50% { opacity:0.2; }
+}
+
+/* TRUST BLINK (SLOW + STABLE) */
+.slow-blink {
+  animation: slowBlink 3.2s infinite;
+}
+
+@keyframes slowBlink {
+  0%,100% { opacity:1; }
+  50% { opacity:0.65; }
+}
+@keyframes pulseGlow {
+  0% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
+  50% { box-shadow:0 0 40px rgba(34,197,94,0.35);} 
+  100% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
+}
+
+@keyframes blinkLive {
+  0%,100% { opacity:1; }
+  50% { opacity:0.25; }
+}
+
+/* SLOWER TRUST BLINK (FOR UPTIME) */
+@keyframes slowBlink {
+  0%,100% { opacity:1; }
+  50% { opacity:0.6; }
+}
+  50% { opacity:0.25; }
+} 
+  50% { box-shadow:0 0 40px rgba(34,197,94,0.35);} 
+  100% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
+}
+
+/* METRIC EMPHASIS */
+.metric {
+  letter-spacing: -1px;
+}
+
+/* SECTION FLOW */
+.section { padding:100px 60px; position:relative; }
+.section:before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:1px;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,0.1),transparent);
+}
+
+/* STICKY CTA (DECISION TRIGGER) */
+.cta-bar {
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#f97316;
+  color:white;
+  padding:14px 28px;
+  border-radius:999px;
+  font-weight:bold;
+  box-shadow:0 10px 40px rgba(249,115,22,0.6);
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100%{ transform:translate(-50%,0);} 
+  50%{ transform:translate(-50%,-6px);} 
+}
+
+</style>
+</head>
+<body class="text-white font-sans">
+
+<!-- HEADER -->
+<div class="p-6 border-b border-zinc-800 flex justify-between items-center bg-black sticky top-0 z-50">
+  <div>
+    <h1 class="text-3xl font-bold">Knoxified Roofing System</h1>
+    <p class="text-sm text-white" style="filter:blur(6px); opacity:0.9; user-select:none;">
+      Live Performance Simulation for <span id="company"></span> • Tailored for <span id="name"></span>
+    </p>
+  </div>
+  <div class="flex gap-4 items-center">
+    <span class="text-green-400 text-sm font-bold" style="animation:blinkLive 1.2s infinite;">● LIVE PERFORMANCE DATA</span>
+    <span id="uptimeStat" class="text-green-400 text-sm font-semibold" style="animation:slowBlink 2.8s infinite; opacity:0.9; transition:all 0.4s ease;">28 / 30 Days Up</span>
+    <button onclick="toggleMode()" class="bg-green-500 px-4 py-2 rounded-xl text-black font-bold">
+      Toggle Before / After
+    </button>
+  </div>
+</div>
+
+<!-- REVENUE DOMINATION -->
+<section class="section">
+<h2 class="text-5xl font-bold mb-14 text-center">Revenue & Job Performance</h2>
+<div class="grid md:grid-cols-4 gap-10">
+
+<div class="card glow bg-zinc-900 p-10 rounded-2xl text-center">
+<p class="text-zinc-400">Monthly Revenue</p>
+<h3 class="metric text-5xl text-green-400 font-bold" data-before="185000" data-after="472600" data-prefix="$"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-10 rounded-2xl text-center">
+<p>Average Job Value</p>
+<h3 class="metric text-5xl font-bold" data-before="6200" data-after="9850" data-prefix="$"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-10 rounded-2xl text-center">
+<p>Jobs Closed / Month</p>
+<h3 class="metric text-5xl font-bold" data-before="30" data-after="96"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-10 rounded-2xl text-center">
+<p>Insurance Claim Approval Rate</p>
+<h3 class="metric text-5xl font-bold" data-before="61" data-after="89" data-suffix="%"></h3>
+</div>
+
+</div>
+</section>
+
+<!-- CALL & LEAD ENGINE -->
+<section class="section bg-zinc-950">
+<h2 class="text-4xl font-bold mb-12">Inbound & Outbound Call Engine</h2>
+<div class="grid md:grid-cols-5 gap-8 mb-14">
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Incoming Calls</p>
+<h3 class="metric text-4xl" data-before="10490" data-after="18420"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Outbound Follow‑Ups</p>
+<h3 class="metric text-4xl" data-before="3200" data-after="15480"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Missed Calls</p>
+<h3 class="metric text-4xl text-red-400" data-before="410" data-after="124"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Average Call Duration</p>
+<h3 class="metric text-4xl" data-before="3.2" data-after="6.8" data-suffix=" mins"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Response Speed</p>
+<h3 class="metric text-4xl" data-before="180" data-after="8" data-suffix=" secs"></h3>
+</div>
+
+</div>
+<canvas id="barChart"></canvas>
+</section>
+
+<!-- LEAD CONVERSION & DISPATCH -->
+<section class="section">
+<h2 class="text-4xl font-bold mb-12">Lead Conversion & Dispatch Control</h2>
+<div class="grid md:grid-cols-4 gap-8 mb-14">
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Leads Generated</p>
+<h3 class="metric text-4xl" data-before="132" data-after="278"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Inspection Booking Rate</p>
+<h3 class="metric text-4xl" data-before="34" data-after="68" data-suffix="%"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Close Rate</p>
+<h3 class="metric text-4xl" data-before="18" data-after="31.6" data-suffix="%"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Storm Emergency Routing Accuracy</p>
+<h3 class="metric text-4xl" data-before="72" data-after="97" data-suffix="%"></h3>
+</div>
+
+</div>
+<canvas id="pieChart"></canvas>
+</section>
+
+<!-- OPERATIONS & CREW OPTIMIZATION -->
+<section class="section bg-zinc-950">
+<h2 class="text-4xl font-bold mb-12">Operations & Crew Optimization</h2>
+<div class="grid md:grid-cols-5 gap-8">
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Estimate Turnaround</p>
+<h3 class="metric text-4xl" data-before="48" data-after="6" data-suffix=" hrs"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Crew Utilization Rate</p>
+<h3 class="metric text-4xl" data-before="63" data-after="91" data-suffix="%"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Material Order Automation</p>
+<h3 class="metric text-4xl" data-before="12" data-after="96" data-suffix="%"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>No‑Show Reduction</p>
+<h3 class="metric text-4xl" data-before="28" data-after="8" data-suffix="%"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Unread Lead Follow‑Ups Cleared</p>
+<h3 class="metric text-4xl" data-before="22000" data-after="46850"></h3>
+</div>
+
+</div>
+</section>
+
+<!-- AI INFRASTRUCTURE -->
+<section class="section">
+<h2 class="text-4xl font-bold mb-12">AI Infrastructure & Reliability</h2>
+<div class="grid md:grid-cols-5 gap-8">
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Model</p>
+<h3 class="text-2xl font-bold">GPT‑5 Omni</h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Latency</p>
+<h3 class="metric text-4xl" data-before="900" data-after="320" data-suffix=" ms"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Automation Tasks / Day</p>
+<h3 class="metric text-4xl" data-before="120" data-after="820"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>Accuracy Rate</p>
+<h3 class="metric text-4xl" data-before="87" data-after="97" data-suffix="%"></h3>
+</div>
+
+<div class="card bg-zinc-900 p-8 rounded-xl text-center">
+<p>System Uptime</p>
+<h3 class="metric text-4xl" data-before="96" data-after="99.98" data-suffix="%"></h3>
+</div>
+
+</div>
+</section>
+
+<!-- OPERATIONAL SUMMARY LIST (ONLY LIST) -->
+<section class="section bg-zinc-950">
+<h2 class="text-4xl font-bold mb-10">Operational Impact Summary</h2>
+<ul class="space-y-4 text-xl">
+<li>Missed Calls Reduced from <span class="metric" data-before="410" data-after="124"></span></li>
+<li>Estimate Turnaround Reduced from <span class="metric" data-before="48" data-after="6" data-suffix=" hrs"></span></li>
+<li>Executive Hours Reclaimed Weekly: <span class="metric" data-before="4" data-after="12" data-suffix=" hrs"></span></li>
+<li>Additional Revenue Unlocked: <span class="metric" data-before="0" data-after="287600" data-prefix="$"></span></li>
+</ul>
+</section>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+document.getElementById("name").innerText = params.get("name") || "Prospect";
+document.getElementById("company").innerText = params.get("company") || "Roofing Company";
+
+let mode="after";
+
+// SMART COUNT-UP WITH EASING (FEELS MORE PREMIUM)
+function animate(el,end,prefix="",suffix=""){
+let start=null;
+let duration=1200;
+function easeOutExpo(x){ return x===1?1:1-Math.pow(2,-10*x); }
+function step(t){
+if(!start)start=t;
+let progress=Math.min((t-start)/duration,1);
+let eased=easeOutExpo(progress);
+let value=(eased*end);
+el.innerText=prefix+Number(value.toFixed(2)).toLocaleString()+suffix;
+if(progress<1)requestAnimationFrame(step);
+}
+requestAnimationFrame(step);
+}
+
+// SCROLL TRIGGER (METRICS ANIMATE WHEN SEEN)
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+let el=entry.target;
+animate(el,parseFloat(el.dataset[mode]),el.dataset.prefix||"",el.dataset.suffix||"");
+observer.unobserve(el);
+}
+});
+},{threshold:0.4});
+
+function load(){
+document.querySelectorAll(".metric").forEach(el=>{
+observer.observe(el);
+});
+}
+
+function toggleMode(){
+mode=mode==="after"?"before":"after";
+document.querySelectorAll(".metric").forEach(el=>{
+animate(el,parseFloat(el.dataset[mode]),el.dataset.prefix||"",el.dataset.suffix||"");
+});
+}
+
+// SMART UPTIME INCREMENT ONLY IF USER IS ACTIVE + NEVER REPEAT (SESSION AWARE)
+let userActive = true;
+let inactivityTimer;
+
+function resetActivity(){
+  userActive = true;
+  clearTimeout(inactivityTimer);
+  inactivityTimer = setTimeout(()=> userActive = false, 5000);
+}
+
+['mousemove','keydown','scroll','click'].forEach(evt=>{
+  window.addEventListener(evt, resetActivity);
+});
+
+resetActivity();
+
+// prevent repeating on revisit (session-based memory)
+const uptimeAlreadyUpdated = sessionStorage.getItem('uptimeUpdated');
+
+setTimeout(()=>{
+  if(!userActive) return;
+  if(uptimeAlreadyUpdated) return; // stops it from happening again
+
+  const uptime=document.getElementById('uptimeStat');
+  if(uptime){
+    uptime.style.transform='scale(1.08)';
+    uptime.style.textShadow='0 0 12px rgba(34,197,94,0.9)';
+    setTimeout(()=>{
+      uptime.innerText='29 / 30 Days Up';
+      uptime.style.transform='scale(1)';
+      sessionStorage.setItem('uptimeUpdated', 'true'); // remember change
+    },300);
+  }
+},10000);
+
+// MICRO-INTERACTION: HOVER BOOST NUMBERS
+
+document.querySelectorAll('.card').forEach(card=>{
+card.addEventListener('mouseenter',()=>{
+card.style.transform='translateY(-12px) scale(1.025)';
+});
+card.addEventListener('mouseleave',()=>{
+card.style.transform='';
+});
+});
+
+load();
+
+new Chart(document.getElementById('barChart'),{
+type:'bar',
+data:{labels:['Incoming','Outbound','Missed'],datasets:[{data:[18420,15480,124]}]},
+options:{plugins:{legend:{display:false}}}
+});
+
+new Chart(document.getElementById('pieChart'),{
+type:'pie',
+data:{labels:['Storm Leads','Referrals','Paid Ads','Organic'],datasets:[{data:[57850,42500,22440,18420]}]}
+});
+
+</script>
+
+<!-- FLOATING CTA -->
+<a id="dynamicCTA" href="https://personalized.knoxified.org" class="cta-bar">View Your System →</a>
+
+<script>
+// DYNAMIC CTA TEXT BASED ON SCROLL (PSYCHOLOGICAL PROGRESSION)
+const cta = document.getElementById('dynamicCTA');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const height = document.body.scrollHeight - window.innerHeight;
+  const progress = scrollY / height;
+
+  if (progress < 0.33) {
+    cta.innerText = 'View Your System →';
+  } else if (progress < 0.66) {
+    cta.innerText = 'See How It Works →';
+  } else {
+    cta.innerText = 'Deploy This In Your Company →';
+  }
+});
+</script>
+
+<!-- SOCIAL PROOF / TIME PRESSURE -->
+<div id="viewerNotice" style="position:fixed; top:90px; right:20px; background:rgba(0,0,0,0.8); padding:12px 18px; border-radius:12px; font-size:13px; color:#22c55e; box-shadow:0 0 20px rgba(34,197,94,0.2); backdrop-filter:blur(10px); opacity:0; transition:all 0.4s ease;">
+  You've been viewing this for <span id="viewTime">0</span>s — most companies deploy within 7 days
+</div>
+
+<script>
+let seconds = 0;
+const notice = document.getElementById('viewerNotice');
+const timeEl = document.getElementById('viewTime');
+
+setTimeout(()=>{
+  notice.style.opacity = 1;
+},4000);
+
+setInterval(()=>{
+  seconds++;
+  if(timeEl) timeEl.innerText = seconds;
+},1000);
+</script>
+
+</body>
+</html>
