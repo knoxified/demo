@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Knoxified Roofing System</title>
 
-<!-- FAVICON + APPLE TOUCH ICON -->
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<!-- FAVICON + APPLE TOUCH ICON (GitHub Pages project-site safe) -->
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <style>
 body { background:#050505; overflow-x:hidden; }
 
@@ -38,24 +39,20 @@ body { background:#050505; overflow-x:hidden; }
   animation: pulseGlow 2.5s infinite;
 }
 @keyframes pulseGlow {
-  0% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
-  50% { box-shadow:0 0 40px rgba(34,197,94,0.35);} 
-  100% { box-shadow:0 0 0 rgba(34,197,94,0.0);} 
+  0% { box-shadow:0 0 0 rgba(34,197,94,0.0);}
+  50% { box-shadow:0 0 40px rgba(34,197,94,0.35);}
+  100% { box-shadow:0 0 0 rgba(34,197,94,0.0);}
 }
 
 /* LIVE DATA BLINK (FAST) */
-.live-blink {
-  animation: blinkLive 0.9s infinite;
-}
+.live-blink { animation: blinkLive 0.9s infinite; }
 @keyframes blinkLive {
   0%,100% { opacity:1; }
   50% { opacity:0.2; }
 }
 
 /* TRUST BLINK (SLOW + STABLE) */
-.slow-blink {
-  animation: slowBlink 3.2s infinite;
-}
+.slow-blink { animation: slowBlink 3.2s infinite; }
 @keyframes slowBlink {
   0%,100% { opacity:1; }
   50% { opacity:0.65; }
@@ -69,10 +66,8 @@ body { background:#050505; overflow-x:hidden; }
 .section:before {
   content:"";
   position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:1px;
+  top:0; left:0;
+  width:100%; height:1px;
   background:linear-gradient(to right,transparent,rgba(255,255,255,0.1),transparent);
 }
 
@@ -91,8 +86,8 @@ body { background:#050505; overflow-x:hidden; }
   animation: float 3s ease-in-out infinite;
 }
 @keyframes float {
-  0%,100%{ transform:translate(-50%,0);} 
-  50%{ transform:translate(-50%,-6px);} 
+  0%,100%{ transform:translate(-50%,0);}
+  50%{ transform:translate(-50%,-6px);}
 }
 </style>
 </head>
@@ -291,6 +286,7 @@ document.getElementById("company").innerText = params.get("company") || "Roofing
 
 let mode="after";
 
+// SMART COUNT-UP WITH EASING (FEELS MORE PREMIUM)
 function animate(el,end,prefix="",suffix=""){
 let start=null;
 let duration=1200;
@@ -306,6 +302,7 @@ if(progress<1)requestAnimationFrame(step);
 requestAnimationFrame(step);
 }
 
+// SCROLL TRIGGER (METRICS ANIMATE WHEN SEEN)
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -329,6 +326,7 @@ animate(el,parseFloat(el.dataset[mode]),el.dataset.prefix||"",el.dataset.suffix|
 });
 }
 
+// SMART UPTIME INCREMENT ONLY IF USER IS ACTIVE + NEVER REPEAT (SESSION AWARE)
 let userActive = true;
 let inactivityTimer;
 
@@ -341,13 +339,15 @@ function resetActivity(){
 ['mousemove','keydown','scroll','click'].forEach(evt=>{
   window.addEventListener(evt, resetActivity);
 });
+
 resetActivity();
 
+// prevent repeating on revisit (session-based memory)
 const uptimeAlreadyUpdated = sessionStorage.getItem('uptimeUpdated');
 
 setTimeout(()=>{
   if(!userActive) return;
-  if(uptimeAlreadyUpdated) return;
+  if(uptimeAlreadyUpdated) return; // stops it from happening again
 
   const uptime=document.getElementById('uptimeStat');
   if(uptime){
@@ -356,18 +356,19 @@ setTimeout(()=>{
     setTimeout(()=>{
       uptime.innerText='29 / 30 Days Up';
       uptime.style.transform='scale(1)';
-      sessionStorage.setItem('uptimeUpdated', 'true');
+      sessionStorage.setItem('uptimeUpdated', 'true'); // remember change
     },300);
   }
 },10000);
 
+// MICRO-INTERACTION: HOVER BOOST NUMBERS
 document.querySelectorAll('.card').forEach(card=>{
-card.addEventListener('mouseenter',()=>{
-card.style.transform='translateY(-12px) scale(1.025)';
-});
-card.addEventListener('mouseleave',()=>{
-card.style.transform='';
-});
+  card.addEventListener('mouseenter',()=>{
+    card.style.transform='translateY(-12px) scale(1.025)';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+  });
 });
 
 load();
@@ -385,9 +386,10 @@ data:{labels:['Storm Leads','Referrals','Paid Ads','Organic'],datasets:[{data:[5
 </script>
 
 <!-- FLOATING CTA -->
-<a id="dynamicCTA" href="#" class="cta-bar">View Your System →</a>
+<a id="dynamicCTA" href="#" target="_blank" rel="noopener" class="cta-bar">View Your System →</a>
 
 <script>
+// DYNAMIC CTA TEXT + APPLY LINK
 const cta = document.getElementById('dynamicCTA');
 
 function setCtaHref(){
